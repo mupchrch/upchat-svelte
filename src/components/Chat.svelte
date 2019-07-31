@@ -1,13 +1,13 @@
 <svelte:head>
-  <title>upchat • chat • {param}</title>
+  <title>upchat • chat • {teamName}</title>
 </svelte:head>
 
 <script>
   import { onMount } from "svelte";
-  import Ajax from "./ajax";
+  import Ajax from "../ajax";
   import LeftBar from "./LeftBar.svelte";
 
-  export let param; // the team name
+  export let teamName;
 
   let allTeamsForUser = [];
   let roomsByType = {};
@@ -38,11 +38,11 @@
    * @return A team object.
    * @throws {Error} if team does not exist (or user is not a member of this team).
    */
-  function getAuthorizedTeam(teamNameFromUrl, teams) {
-    const team = teams.find((team) => team.name === teamNameFromUrl);
+  function getAuthorizedTeam(teamName, teams) {
+    const team = teams.find((team) => team.name === teamName);
 
     if (!team) {
-      throw new Error(`Team ${teamNameFromUrl} does not exist.`);
+      throw new Error(`Team ${teamName} does not exist.`);
     }
 
     return team;
@@ -52,7 +52,7 @@
     try {
       allTeamsForUser = await fetchTeams();
       // Make sure our user belongs to this team.
-      const team = getAuthorizedTeam(param, allTeamsForUser);
+      const team = getAuthorizedTeam(teamName, allTeamsForUser);
   
       roomsByType = await fetchRooms(team.team_id);
     } catch (e) {
@@ -65,5 +65,5 @@
   });
 </script>
 
-<h1>This is the chat page for {param}!</h1>
+<h1>This is the chat page for {teamName}!</h1>
 <LeftBar {roomsByType} />

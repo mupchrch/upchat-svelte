@@ -2,10 +2,10 @@
 	import { onMount } from "svelte";
 	import { Router, Link, Route } from "svelte-routing";
 	import AuthRoute from "./AuthRoute.svelte";
-	import HomePage from "./HomePage.svelte";
-	import LoginPage from "./LoginPage.svelte";
-	import TeamSelectPage from "./TeamSelectPage.svelte";
-	import ChatPage from "./ChatPage.svelte";
+	import HomePage from "./routes/Home.svelte";
+	import LoginPage from "./routes/Login.svelte";
+	import TeamSelectPage from "./routes/TeamSelect.svelte";
+	import ChatPage from "./routes/Chat.svelte";
 
 	export let url = "";
 </script>

@@ -5,7 +5,7 @@
 <script>
   import { onMount } from "svelte";
   import { Link } from "svelte-routing";
-  import Ajax from "./ajax";
+  import Ajax from "../ajax";
 
   let teams = {};
 

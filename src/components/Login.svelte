@@ -1,13 +1,8 @@
-<svelte:head>
-	<title>upchat • login</title>
-</svelte:head>
-
 <script>
 	import { onMount } from "svelte";
 	import { navigate } from "svelte-routing";
-	import Ajax from "./ajax";
-  import Token from "./token";
-	import TeamSelectPage from "./TeamSelectPage.svelte";
+	import Ajax from "../ajax";
+  import Token from "../token";
 
 	let username = "";
 	let password = "";
