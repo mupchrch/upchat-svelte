@@ -1,21 +1,22 @@
 <script>
 	import { onMount } from "svelte";
 	import { navigate } from "svelte-routing";
-	import Ajax from "../ajax";
+	import EntranceFlow from "./EntranceFlow.svelte";
+	import Api from "../api";
   import Token from "../token";
 
 	let username = "";
 	let password = "";
 	let errorMessage = "";
 
+	/**
+	 * Authenticates a user and navigates to teams page.
+	 */
 	async function authenticate() {
 		try {
-			const resJson = await Ajax.post("http://localhost:8000/api/auth/authenticate", {
-				username,
-				password
-			});
+			const token = await Api.authenticate(username, password);
 
-			Token.set(resJson.token);
+			Token.set(token);
 			Token.enableAutoRefresh();
 			navigate("/teams");
 		} catch (e) {
@@ -32,13 +33,12 @@
 </script>
 
 <h1>This is the login page, {username || "stranger"}!</h1>
-<div className="entrance-flow">
+<EntranceFlow>
 	<form className="entrance-flow-box" on:submit|preventDefault={authenticate}>
 		{errorMessage}
 		<div className="form-row">
 			<i className="fas fa-fw fa-user"></i>
 			<input
-				autoFocus
 				type="text"
 				name="username"
 				placeholder="username"
@@ -58,4 +58,4 @@
 			<input type="submit" value="log in"/>
 		</div>
 	</form>
-</div>
+</EntranceFlow>

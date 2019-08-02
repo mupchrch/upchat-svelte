@@ -6,6 +6,6 @@
 <h2>{header}</h2>
 <ul>
   {#each Object.values(rooms) as room}
-  <li>{room.name}</li>
+    <li>{room.name}</li>
   {/each}
 </ul>

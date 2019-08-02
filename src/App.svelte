@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from "svelte";
 	import { Router, Link, Route } from "svelte-routing";
 	import AuthRoute from "./AuthRoute.svelte";
 	import HomePage from "./routes/Home.svelte";
